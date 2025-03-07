@@ -47,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
         botaoAdicionar.setOnClickListener(view -> adicionarNaListaDeTarefa());
 
+        listaDeTarefa.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                removerItem(position);
+                return true;
+            }
+        });
+
     }
 
     //Adicionar item na lista de tarefa
@@ -58,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             editTextText2.setText("");
         }
+    }
+
+    //remover item selecionado da lista de tarefa
+    private void removerItem(int position) {
+        tarefas.remove(position);
+        adapter.notifyDataSetChanged();
     }
 
 }
